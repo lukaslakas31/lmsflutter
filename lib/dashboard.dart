@@ -1,9 +1,3 @@
-import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-
-class DashboardScreen extends StatelessWidget {
-  /// Constructs a [DashboardScreen]
-  const DashboardScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
