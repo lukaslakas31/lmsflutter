@@ -18,6 +18,14 @@ class DashboardScreen extends StatelessWidget {
               onPressed: () => context.go('/login'),
               child: const Text('go to login page'),
             ),
+            ElevatedButton(
+              onPressed: () => context.go('/course'),
+              child: const Text('go to course page'),
+            ),
+            ElevatedButton(
+              onPressed: () => context.go('/course_list'),
+              child: const Text('go to course list page'),
+            ),
           ],
         ),
       ),

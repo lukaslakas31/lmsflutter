@@ -4,6 +4,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:lmsflutter/course.dart';
+import 'package:lmsflutter/course_list.dart';
 import 'package:lmsflutter/dashboard.dart';
 import 'package:lmsflutter/login.dart';
 
@@ -37,7 +39,19 @@ final GoRouter _router = GoRouter(
           builder: (BuildContext context, GoRouterState state) {
             return const LoginScreen();
           },
-        )
+        ),
+        GoRoute(
+          path: 'course',
+          builder: (BuildContext context, GoRouterState state) {
+            return const CourseScreen();
+          },
+        ),
+        GoRoute(
+          path: 'course_list',
+          builder: (BuildContext context, GoRouterState state) {
+            return const CourseListScreen();
+          },
+        ),
       ],
     ),
   ],
