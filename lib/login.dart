@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+
 class LoginScreen extends StatelessWidget {
   /// Constructs a [LoginScreen]
   const LoginScreen({super.key});
@@ -7,6 +8,7 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
