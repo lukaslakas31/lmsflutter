@@ -7,7 +7,6 @@ import 'package:go_router/go_router.dart';
 import 'package:lmsflutter/dashboard.dart';
 import 'package:lmsflutter/login.dart';
 
-
 /// This sample app shows an app with two screens.
 ///
 /// The first route '/' is mapped to [HomeScreen], and the second route
@@ -52,7 +51,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      
       routerConfig: _router,
     );
   }
