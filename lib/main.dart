@@ -5,6 +5,7 @@ import 'package:lmsflutter/screen/CourseList.dart';
 import 'package:lmsflutter/screen/Dashboard.dart';
 import 'package:lmsflutter/screen/Login.dart';
 import 'package:lmsflutter/model/Student.dart';
+import 'package:lmsflutter/model/course_model.dart';
 
 void main() => runApp(const MyApp());
 
@@ -21,6 +22,11 @@ class _MyAppState extends State<MyApp> {
   bool _isLoggedIn = false;
   Student? _user;
   List<Student> studentList = [];
+  List<Course> courses = [
+    Course('SSNI777', 'Hekasi', 'Hekasi to tanga', 'https://gamicsoft.sgp1.digitaloceanspaces.com/24612/conversions/QQ%E6%88%AA%E5%9B%BE20230208182753-big_thumb.jpg'),
+    Course('SSNI778', 'Hekasi', 'TLE to tanga', 'https://gamicsoft.sgp1.digitaloceanspaces.com/24612/conversions/QQ%E6%88%AA%E5%9B%BE20230208182753-big_thumb.jpg'),
+    Course('SSNI779', 'E.S.P.', 'E.S.P. to tanga', 'https://gamicsoft.sgp1.digitaloceanspaces.com/24612/conversions/QQ%E6%88%AA%E5%9B%BE20230208182753-big_thumb.jpg'),
+  ];
 
   void _signUp(username, password, cpassword) {
     bool isMatched = false;
