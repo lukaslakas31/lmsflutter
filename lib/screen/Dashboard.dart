@@ -4,9 +4,16 @@ import 'package:lmsflutter/model/Student.dart';
 
 class DashboardScreen extends StatefulWidget {
   /// Constructs a [DashboardScreen]
-  const DashboardScreen({super.key, required this.isLoggedIn, required this.user});
+  const DashboardScreen({
+    super.key,
+    required this.isLoggedIn,
+    required this.user,
+    required this.logOut
+  });
+
   final bool isLoggedIn;
   final Student user;
+  final VoidCallback logOut;
   @override
   State<DashboardScreen> createState() => _DashboardScreenState();
 }
@@ -39,7 +46,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
           Padding( 
             padding: EdgeInsets.fromLTRB(0, 10, 20, 0),
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                widget.logOut();
+              },
               child: Icon(
                 Icons.logout,
                 color: Colors.black,
@@ -183,7 +192,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   borderRadius: BorderRadius.circular(20.0),
                   ),
               ),
-              onPressed: () {},
+              onPressed: () {
+                context.go('/course_list');
+              },
             ),
           ]
         ),

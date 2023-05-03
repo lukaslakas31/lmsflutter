@@ -2,12 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 typedef SignUpCallback = void Function(String, String, String);
+typedef LogInCallback = void Function(String, String);
 
 class LoginScreen extends StatefulWidget {
   /// Constructs a [LoginScreen]
-  const LoginScreen({super.key, required this.isLoggedIn, required this.signUp});
+  const LoginScreen({
+    super.key,
+    required this.isLoggedIn,
+    required this.signUp,
+    required this.logIn,
+  });
+
   final bool isLoggedIn;
   final SignUpCallback signUp;
+  final LogInCallback logIn;
   @override
   State<LoginScreen> createState() => _LoginScreenState();
 }
@@ -98,7 +106,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   child: TextButton(
                       onPressed: () {
-                        print('hello');
+                        widget.logIn(
+                          _userNameControllerLogin.text,
+                          _passwordControllerLogin.text
+                        );
                       },
                       child: const Text(
                         'Login',
