@@ -33,6 +33,7 @@ class _MyAppState extends State<MyApp> {
       _user = null;
       _isLoggedIn = false;
     });
+    
   }
 
   void _logIn(username, password) {
@@ -97,31 +98,52 @@ class _MyAppState extends State<MyApp> {
             GoRoute(
               path: '/',
               builder: (BuildContext context, GoRouterState state) {
-                return DashboardScreen(
-                    isLoggedIn: _isLoggedIn,
-                    user: _user ?? Student('', ''),
+                if (_isLoggedIn) {
+                  return DashboardScreen(
+                    user: _user!,
                     logOut: _logOut,
-                );
+                  );
+                } else {
+                  context.go('/login');
+                  return LoginScreen(
+                    signUp: _signUp,
+                    logIn: _logIn,
+                  );
+                }
               },
               routes: <RouteBase>[
                 GoRoute(
                   path: 'dashboard',
                   builder: (BuildContext context, GoRouterState state) {
-                    return DashboardScreen(
-                      isLoggedIn: _isLoggedIn,
-                      user: _user!,
-                      logOut: _logOut,
-                    );
+                    if (_isLoggedIn) {
+                      return DashboardScreen(
+                        user: _user!,
+                        logOut: _logOut,
+                      );
+                    } else {
+                      context.go('/login');
+                      return LoginScreen(
+                        signUp: _signUp,
+                        logIn: _logIn,
+                      );
+                    }
                   },
                 ),
                 GoRoute(
                   path: 'login',
                   builder: (BuildContext context, GoRouterState state) {
-                    return LoginScreen(
-                      isLoggedIn: _isLoggedIn,
-                      signUp: _signUp,
-                      logIn: _logIn,
-                    );
+                    if (_isLoggedIn) {
+                      context.go('/dashboard');
+                      return DashboardScreen(
+                        user: _user!,
+                        logOut: _logOut,
+                      );
+                    } else {
+                      return LoginScreen(
+                        signUp: _signUp,
+                        logIn: _logIn,
+                      );
+                    }
                   },
                 ),
                 GoRoute(

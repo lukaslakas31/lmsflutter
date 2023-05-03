@@ -8,12 +8,10 @@ class LoginScreen extends StatefulWidget {
   /// Constructs a [LoginScreen]
   const LoginScreen({
     super.key,
-    required this.isLoggedIn,
     required this.signUp,
     required this.logIn,
   });
 
-  final bool isLoggedIn;
   final SignUpCallback signUp;
   final LogInCallback logIn;
   @override
@@ -30,9 +28,9 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
 
-    if(widget.isLoggedIn){
-      context.go('/');
-    }
+    // if(widget.isLoggedIn){
+    //   context.go('/');
+    // }
 
     return Scaffold(
       body: SafeArea(
