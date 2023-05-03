@@ -6,12 +6,10 @@ class DashboardScreen extends StatefulWidget {
   /// Constructs a [DashboardScreen]
   const DashboardScreen({
     super.key,
-    required this.isLoggedIn,
     required this.user,
     required this.logOut
   });
 
-  final bool isLoggedIn;
   final Student user;
   final VoidCallback logOut;
   @override
@@ -24,9 +22,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
 
-    if(!widget.isLoggedIn) {
-      context.go('/login');
-    }
+    // if(!widget.isLoggedIn) {
+    //   context.go('/login');
+    // }
 
     return Scaffold(
       appBar: AppBar(
