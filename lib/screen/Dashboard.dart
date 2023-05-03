@@ -1,18 +1,26 @@
 import 'package:flutter/material.dart';
-//import 'package:go_router/go_router.dart';
+import 'package:go_router/go_router.dart';
+import 'package:lmsflutter/model/Student.dart';
 
 class DashboardScreen extends StatefulWidget {
   /// Constructs a [DashboardScreen]
-  const DashboardScreen({super.key});
-
+  const DashboardScreen({super.key, required this.isLoggedIn, required this.user});
+  final bool isLoggedIn;
+  final Student user;
   @override
   State<DashboardScreen> createState() => _DashboardScreenState();
 }
 
 class _DashboardScreenState extends State<DashboardScreen> {
+
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
+
+    if(!widget.isLoggedIn) {
+      context.go('/login');
+    }
+
     return Scaffold(
       body: Container(
         padding: const EdgeInsets.fromLTRB(20, 30, 20, 10),
@@ -40,8 +48,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   ),
                   Container(
                     alignment: Alignment.centerLeft,
-                    child: const Text(
-                      'Username',
+                    child: Text(
+                      '${widget.user.getUserName}',
                       style: TextStyle(
                         fontSize: 36,
                       ),
@@ -93,9 +101,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
+                    children: [
                       Text(
-                        '3',
+                        '${widget.user.getCourse.length}',
                         style: TextStyle(
                           fontSize: 64,
                         ),
