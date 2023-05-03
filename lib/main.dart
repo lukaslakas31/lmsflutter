@@ -19,7 +19,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  bool _isLoggedIn = false;
+  bool _isLoggedIn = true;
   Student? _user;
   List<Student> studentList = [];
   List<Course> courses = [
@@ -31,8 +31,8 @@ class _MyAppState extends State<MyApp> {
   void _signUp(username, password, cpassword) {
     bool isMatched = false;
     print(username);
-    if(studentList.length == 0) {
-      if(password == cpassword){
+    if (studentList.length == 0) {
+      if (password == cpassword) {
         studentList.add(Student(username, password));
         print('user created');
         print(studentList);
@@ -41,16 +41,15 @@ class _MyAppState extends State<MyApp> {
           _isLoggedIn = true;
         });
       }
-    }
-    else {
-      for(int i = 0; i < studentList.length; i++){
-        if(username == studentList[i].getUserName){
+    } else {
+      for (int i = 0; i < studentList.length; i++) {
+        if (username == studentList[i].getUserName) {
           isMatched = true;
           print('user existed');
           break;
         }
       }
-      if(!isMatched){
+      if (!isMatched) {
         studentList.add(Student(username, password));
         print('user created');
         print(studentList);
@@ -64,45 +63,47 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-
     return MaterialApp.router(
-      debugShowCheckedModeBanner: false,
-      routerConfig: GoRouter(
-        routes: <RouteBase>[
-          GoRoute(
-            path: '/',
-            builder: (BuildContext context, GoRouterState state) {
-              return DashboardScreen(isLoggedIn: _isLoggedIn, user: _user ?? Student('', ''));
-            },
-            routes: <RouteBase>[
-              GoRoute(
-                path: 'dashboard',
-                builder: (BuildContext context, GoRouterState state) {
-                  return DashboardScreen(isLoggedIn: _isLoggedIn, user: _user!);
-                },
-              ),
-              GoRoute(
-                path: 'login',
-                builder: (BuildContext context, GoRouterState state) {
-                  return LoginScreen(isLoggedIn: _isLoggedIn, signUp: _signUp,);
-                },
-              ),
-              GoRoute(
-                path: 'course',
-                builder: (BuildContext context, GoRouterState state) {
-                  return const CourseScreen();
-                },
-              ),
-              GoRoute(
-                path: 'course_list',
-                builder: (BuildContext context, GoRouterState state) {
-                  return const CourseListScreen();
-                },
-              ),
-            ],
-          ),
-        ],
-      )
-    );
+        debugShowCheckedModeBanner: false,
+        routerConfig: GoRouter(
+          routes: <RouteBase>[
+            GoRoute(
+              path: '/',
+              builder: (BuildContext context, GoRouterState state) {
+                return CourseListScreen();
+              },
+              routes: <RouteBase>[
+                GoRoute(
+                  path: 'dashboard',
+                  builder: (BuildContext context, GoRouterState state) {
+                    return DashboardScreen(
+                        isLoggedIn: _isLoggedIn, user: _user!);
+                  },
+                ),
+                GoRoute(
+                  path: 'login',
+                  builder: (BuildContext context, GoRouterState state) {
+                    return LoginScreen(
+                      isLoggedIn: _isLoggedIn,
+                      signUp: _signUp,
+                    );
+                  },
+                ),
+                GoRoute(
+                  path: 'course',
+                  builder: (BuildContext context, GoRouterState state) {
+                    return const CourseScreen();
+                  },
+                ),
+                GoRoute(
+                  path: 'course_list',
+                  builder: (BuildContext context, GoRouterState state) {
+                    return CourseListScreen();
+                  },
+                ),
+              ],
+            ),
+          ],
+        ));
   }
 }

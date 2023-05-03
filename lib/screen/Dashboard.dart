@@ -22,8 +22,42 @@ class _DashboardScreenState extends State<DashboardScreen> {
     }
 
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        centerTitle: true,
+        title: Text(
+          'app_',
+          style: TextStyle(
+            color: Color.fromRGBO(251, 142, 55, 1),
+            fontSize: 42,
+            fontFamily: 'FredokaOne',
+          ),
+        ),
+        actions: [
+          //LOGOUT BUTTON
+          Padding( 
+            padding: EdgeInsets.fromLTRB(0, 10, 20, 0),
+            child: ElevatedButton(
+              onPressed: () {},
+              child: Icon(
+                Icons.logout,
+                color: Colors.black,
+                size: 24,
+              ),
+              style: ElevatedButton.styleFrom(
+                minimumSize: Size(24, 24),
+                backgroundColor: Color.fromRGBO(251, 142, 55, 1),
+                shape: CircleBorder(),
+                padding: EdgeInsets.all(8),
+              ),
+            ),
+          )
+        ],
+      ),
+
       body: Container(
-        padding: const EdgeInsets.fromLTRB(20, 30, 20, 10),
+        padding: const EdgeInsets.fromLTRB(20, 30, 20, 30),
         child: Column(
           children: [
             Container(
@@ -43,6 +77,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       'Welcome,',
                       style: TextStyle(
                         fontSize: 20,
+                        fontFamily: 'Lexend',
                       ),
                     ),
                   ),
@@ -52,6 +87,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       '${widget.user.getUserName}',
                       style: TextStyle(
                         fontSize: 36,
+                        fontFamily: 'Lexend',
                       ),
                     ),
                   ),
@@ -82,6 +118,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 36,
+                        fontFamily: 'Lexend',
                       ),
                     ),
                   ),
@@ -106,12 +143,14 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         '${widget.user.getCourse.length}',
                         style: TextStyle(
                           fontSize: 64,
+                          fontFamily: 'Lexend',
                         ),
                       ),
                       Text(
                         'Courses',
                         style: TextStyle(
                           fontSize: 16,
+                          fontFamily: 'Lexend',
                         ),
                       ),
                     ],
@@ -128,23 +167,51 @@ class _DashboardScreenState extends State<DashboardScreen> {
               ],
             ),
             const SizedBox(height: 20),
-            Container(
-              alignment: Alignment.center,
-              width: screenWidth * 1,
-              height: 60,
-              decoration: BoxDecoration(
-                color: const Color.fromRGBO(251, 142, 55, 1),
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: const Text(
+            ElevatedButton(
+              child: Text(
                 'Join Course +',
-                textAlign: TextAlign.center,
                 style: TextStyle(
+                  color: Colors.black,
                   fontSize: 20,
+                  fontFamily: 'Lexend',
                 ),
               ),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Color.fromRGBO(251, 142, 55, 1),
+                minimumSize: Size(screenWidth * 1, 60),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20.0),
+                  ),
+              ),
+              onPressed: () {},
             ),
           ]
+        ),
+      ),
+      bottomNavigationBar: ClipRRect(
+        borderRadius: BorderRadius.only(
+          topRight: Radius.circular(10),
+          topLeft: Radius.circular(10)
+        ),
+        child: BottomNavigationBar(
+          backgroundColor: Color.fromRGBO(251, 142, 55, 1),
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.home,
+              ),
+              label: 'Home',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.class_,
+              ),
+              label: 'Course',
+            ),
+          ],
+          onTap: null,
+          unselectedItemColor: Colors.black,
+          selectedItemColor: Colors.white,
         ),
       )
     );
