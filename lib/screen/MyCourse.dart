@@ -87,8 +87,8 @@ class _MyCourseScreenState extends State<MyCourseScreen> {
               });
             },
             unselectedItemColor: Colors.white,
-            selectedItemColor: Color.fromRGBO(163, 90, 33, 1),
+            selectedItemColor: const Color.fromRGBO(163, 90, 33, 1),
           ),
-        ));
+        ),);
   }
 }
