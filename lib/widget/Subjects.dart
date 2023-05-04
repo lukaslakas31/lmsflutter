@@ -27,7 +27,7 @@ class Subjects extends StatelessWidget {
         ),
         const SizedBox(height: 16),
         Text(
-          'English\n$code',
+          '$name\n$code',
           textAlign: TextAlign.center,
           style: const TextStyle(
             fontWeight: FontWeight.bold,

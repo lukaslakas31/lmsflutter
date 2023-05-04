@@ -1,22 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lmsflutter/widget/Subjects.dart';
+import 'package:lmsflutter/model/course_model.dart';
+
+typedef AddCourseCallback = void Function(String);
 
 class CourseCard extends StatelessWidget {
-  final String code;
-  final String name;
-  final String description;
-  final String imageUrl;
+  // final String code;
+  // final String name;
+  // final String description;
+  // final String imageUrl;
+  final Course course;
   final String buttonText;
+  final AddCourseCallback? addCode;
   final Key key;
 
   const CourseCard({
-    required this.code,
-    required this.name,
-    required this.description,
-    required this.imageUrl,
+    // required this.code,
+    // required this.name,
+    // required this.description,
+    // required this.imageUrl,
+    required this.course,
     required this.key,
     required this.buttonText,
+    required this.addCode,
   }) : super(key: key);
 
   @override
@@ -25,18 +32,18 @@ class CourseCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Image(image: NetworkImage(imageUrl), fit: BoxFit.cover),
+          Image(image: NetworkImage(course.source), fit: BoxFit.cover),
           ListTile(
             key: key,
             title: Text(
-              code,
+              course.code,
               style: const TextStyle(
                 fontSize: 20,
                 fontFamily: 'Lexend',
               ),
             ),
             subtitle: Text(
-              name,
+              course.name,
               style: const TextStyle(
                 fontSize: 20,
                 fontFamily: 'Lexend',
@@ -46,7 +53,7 @@ class CourseCard extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             child: Text(
-              description,
+              course.description,
               textAlign: TextAlign.center,
               style: const TextStyle(
                 fontSize: 15,
@@ -57,9 +64,10 @@ class CourseCard extends StatelessWidget {
           TextButton(
             onPressed: () {
               if (buttonText == 'Enroll Course') {
-                print('Wag ka mag enroll dito, panget na course to :P');
+                addCode!(course.code);
+                context.go('/course');
               } else {
-                context.go('/course_detail');
+                context.go('/course_detail/${course.code}');
               }
             },
             style: TextButton.styleFrom(

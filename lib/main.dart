@@ -5,7 +5,7 @@ import 'package:lmsflutter/screen/CourseDetail.dart';
 import 'package:lmsflutter/screen/CourseList.dart';
 import 'package:lmsflutter/screen/Dashboard.dart';
 import 'package:lmsflutter/screen/Login.dart';
-import 'package:lmsflutter/model/Student.dart';
+import 'package:lmsflutter/model/student_model.dart';
 import 'package:lmsflutter/model/course_model.dart';
 
 void main() => runApp(const MyApp());
@@ -52,6 +52,7 @@ class _MyAppState extends State<MyApp> {
         }
       }
       if (isMatched) {
+        print('matched');
         setState(() {
           _user = matchedUser;
           _isLoggedIn = true;
@@ -153,19 +154,19 @@ class _MyAppState extends State<MyApp> {
                 GoRoute(
                   path: 'course',
                   builder: (BuildContext context, GoRouterState state) {
-                    return MyCourseScreen(courses: _courses);
+                    return MyCourseScreen(courses: _courses, user: _user!,);
                   },
                 ),
                 GoRoute(
                   path: 'course_list',
                   builder: (BuildContext context, GoRouterState state) {
-                    return CourseListScreen(courses: _courses);
+                    return CourseListScreen(courses: _courses, user: _user!,);
                   },
                 ),
                 GoRoute(
-                  path: 'course_detail',
+                  path: 'course_detail/:code',
                   builder: (BuildContext context, GoRouterState state) {
-                    return const CourseDetail();
+                    return CourseDetail(courses: _courses, code: state.pathParameters['code']!,);
                   },
                 ),
               ],

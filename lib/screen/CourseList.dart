@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:lmsflutter/widget/CourseCard.dart';
 import 'package:lmsflutter/model/course_model.dart';
+import 'package:lmsflutter/model/student_model.dart';
 
 class CourseListScreen extends StatelessWidget {
-  CourseListScreen({Key? key, required this.courses}) : super(key: key);
+  CourseListScreen({Key? key, required this.courses, required this.user}) : super(key: key);
 
   final List<Course> courses;
+  final Student user;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,14 +26,17 @@ class CourseListScreen extends StatelessWidget {
               ),
              const  SizedBox(height: 16),
               for(final course in courses)
-                CourseCard(
-                  key: ValueKey(course.code),
-                  code: course.code,
-                  name: course.name,
-                  description: course.description,
-                  imageUrl: course.source,
-                  buttonText: 'Enroll Course',
-                )
+                if(user.hasCode(course.code) == -1)
+                  CourseCard(
+                    key: ValueKey(course.code),
+                    // code: course.code,
+                    // name: course.name,
+                    // description: course.description,
+                    // imageUrl: course.source,
+                    course: course,
+                    buttonText: 'Enroll Course',
+                    addCode: user.addCourse,
+                  )
             ],
           ),
         ),

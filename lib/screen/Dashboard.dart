@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:lmsflutter/model/Student.dart';
+import 'package:lmsflutter/model/student_model.dart';
 
 class DashboardScreen extends StatefulWidget {
   /// Constructs a [DashboardScreen]
@@ -144,7 +144,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          '${widget.user.getCourse.length}',
+                          '${widget.user.getCourseCodes.length}',
                           style: const TextStyle(
                             fontSize: 64,
                             fontFamily: 'Lexend',
