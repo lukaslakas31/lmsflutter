@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:lmsflutter/widget/Subjects.dart';
 
 class CourseCard extends StatelessWidget {
   final String code;
@@ -8,7 +9,6 @@ class CourseCard extends StatelessWidget {
   final String imageUrl;
   final String buttonText;
   final Key key;
-  
 
   const CourseCard({
     required this.code,
@@ -56,8 +56,10 @@ class CourseCard extends StatelessWidget {
           ),
           TextButton(
             onPressed: () {
-              if(buttonText == 'Enroll Course'){
-                context.go('/dashboard'); //FOR TESTING
+              if (buttonText == 'Enroll Course') {
+                Null;
+              } else {
+                context.go('/course_detail');
               }
             },
             style: TextButton.styleFrom(
@@ -73,7 +75,7 @@ class CourseCard extends StatelessWidget {
             ),
             child: Text(
               buttonText,
-              style: TextStyle(
+              style: const TextStyle(
                 fontFamily: 'Lexend',
                 color: Colors.white,
                 fontSize: 18,
