@@ -1,9 +1,9 @@
+import 'package:accordion/controllers.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:lmsflutter/widget/Subjects.dart';
 import 'package:lmsflutter/model/course_model.dart';
 import 'package:go_router/go_router.dart';
+import 'package:accordion/accordion.dart';
 
 class CourseDetail extends StatefulWidget {
   const CourseDetail({super.key, required this.courses, required this.code});
@@ -20,34 +20,102 @@ class _CourseDetailState extends State<CourseDetail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Text(
-                'Course Details',
-                style: TextStyle(
-                  fontFamily: 'FredokaOne',
-                  fontSize: 42,
-                  color: Color.fromRGBO(251, 142, 55, 1),
+        body: SafeArea(
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                const Text(
+                  'Course Details',
+                  style: TextStyle(
+                    fontFamily: 'FredokaOne',
+                    fontSize: 42,
+                    color: Color.fromRGBO(251, 142, 55, 1),
+                  ),
                 ),
-              ),
-              SizedBox(height: 16),
-              for(final course in widget.courses)
-                if(course.code == widget.code)
-                  Subjects(
-                    key: ValueKey(course.code),
-                    code: course.code,
-                    name: course.name,
-                    description: course.description,
-                    imageUrl: course.source,
-                  )
-            ],
+                const SizedBox(height: 16),
+                for (final course in widget.courses)
+                  if (course.code == widget.code)
+                    Subjects(
+                      key: ValueKey(course.code),
+                      code: course.code,
+                      name: course.name,
+                      description: course.description,
+                      imageUrl: course.source,
+                    ),
+                Accordion(
+                  disableScrolling: true,
+                  maxOpenSections: 2,
+                  headerBackgroundColorOpened: Colors.black54,
+                  scaleWhenAnimating: true,
+                  openAndCloseAnimation: true,
+                  headerPadding:
+                      const EdgeInsets.symmetric(vertical: 7, horizontal: 15),
+                  children: [
+                    AccordionSection(
+                      isOpen: false,
+                      leftIcon: const Icon(Icons.insights_rounded,
+                          color: Colors.white),
+                      headerBackgroundColor:
+                          const Color.fromRGBO(251, 142, 55, 1),
+                      headerBackgroundColorOpened:
+                          const Color.fromRGBO(251, 142, 55, 1),
+                      headerPadding: const EdgeInsets.symmetric(
+                        horizontal: 20,
+                        vertical: 20,
+                      ),
+                      header: const Text(
+                        'Introduction',
+                        style: TextStyle(
+                          fontFamily: 'FredokaOne',
+                          fontSize: 25,
+                          color: Colors.white,
+                        ),
+                      ),
+                      content: const Text(
+                        '''Lorem ipsum is typically a corrupted version of 'De finibus bonorum et malorum', a 1st century BC text by the Roman statesman and philosopher Cicero, with words altered, added, and removed to make it nonsensical and improper Latin.''',
+                        style: TextStyle(
+                          fontFamily: 'Lexend',
+                          fontSize: 20,
+                        ),
+                      ),
+                      contentHorizontalPadding: 20,
+                      contentBorderWidth: 1,
+                    ),
+                    AccordionSection(
+                      isOpen: false,
+                      leftIcon: const Icon(Icons.movie, color: Colors.white),
+                      headerBackgroundColor:
+                          const Color.fromRGBO(251, 142, 55, 1),
+                      headerBackgroundColorOpened:
+                          const Color.fromRGBO(251, 142, 55, 1),
+                      headerPadding: const EdgeInsets.symmetric(
+                        horizontal: 20,
+                        vertical: 20,
+                      ),
+                      header: const Text(
+                        'Lesson #1',
+                        style: TextStyle(
+                          fontFamily: 'FredokaOne',
+                          fontSize: 25,
+                          color: Colors.white,
+                        ),
+                      ),
+                      content: const Icon(
+                        Icons.play_arrow,
+                        size: 200,
+                        color: Color(0xff999999),
+                      ),
+                      contentHorizontalPadding: 20,
+                      contentBorderWidth: 1,
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
-      ),
-      bottomNavigationBar: ClipRRect(
+        bottomNavigationBar: ClipRRect(
           borderRadius: const BorderRadius.only(
               topRight: Radius.circular(10), topLeft: Radius.circular(10)),
           child: BottomNavigationBar(
@@ -68,7 +136,7 @@ class _CourseDetailState extends State<CourseDetail> {
             ],
             currentIndex: _selectedIndex,
             onTap: (int index) {
-              switch(index){
+              switch (index) {
                 case 0:
                   context.go('/dashboard');
                   break;
@@ -76,7 +144,7 @@ class _CourseDetailState extends State<CourseDetail> {
                   context.go('/course');
                   break;
                 default:
-                 const Text('Screen not found.');
+                  const Text('Screen not found.');
               }
               setState(() {
                 _selectedIndex = index;
@@ -85,7 +153,6 @@ class _CourseDetailState extends State<CourseDetail> {
             unselectedItemColor: Colors.white,
             selectedItemColor: Colors.white,
           ),
-        )
-    );
+        ));
   }
 }

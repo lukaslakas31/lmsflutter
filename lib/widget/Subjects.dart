@@ -44,6 +44,7 @@ class Subjects extends StatelessWidget {
             fontFamily: 'Lexend',
           ),
         ),
+        const SizedBox(height: 16),
       ],
     );
   }
