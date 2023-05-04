@@ -13,6 +13,7 @@ class DashboardScreen extends StatefulWidget {
 }
 
 class _DashboardScreenState extends State<DashboardScreen> {
+  int _selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -207,10 +208,26 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 icon: Icon(
                   Icons.class_,
                 ),
-                label: 'Course',
+                label: 'My Course',
               ),
             ],
-            onTap: null,
+            currentIndex: _selectedIndex,
+            onTap: (int index) {
+              switch(index){
+                case 0:
+                  context.go('/dashboard');
+                  break;
+                case 1:
+                  context.go('/course');
+                  break;
+                default:
+                 const Text('Screen not found.');
+              }
+              setState(() {
+                _selectedIndex = index;
+              });
+            },
+          
             unselectedItemColor: Colors.black,
             selectedItemColor: Colors.white,
           ),

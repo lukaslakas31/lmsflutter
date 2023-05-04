@@ -57,7 +57,7 @@ class CourseCard extends StatelessWidget {
           TextButton(
             onPressed: () {
               if (buttonText == 'Enroll Course') {
-                Null;
+                print('Wag ka mag enroll dito, panget na course to :P');
               } else {
                 context.go('/course_detail');
               }
