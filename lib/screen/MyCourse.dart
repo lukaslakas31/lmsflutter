@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:lmsflutter/widget/CourseCard.dart';
 import 'package:lmsflutter/model/course_model.dart';
 
-class CourseScreen extends StatelessWidget {
-  CourseScreen({Key? key, required this.courses}) : super(key: key);
+class MyCourseScreen extends StatelessWidget {
+  MyCourseScreen({Key? key, required this.courses}) : super(key: key);
 
   final List<Course> courses;
   @override
@@ -14,7 +14,7 @@ class CourseScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Text(
+              const Text(
                 'My Course',
                 style: TextStyle(
                   fontFamily: 'FredokaOne',
@@ -22,8 +22,8 @@ class CourseScreen extends StatelessWidget {
                   color: Color.fromRGBO(251, 142, 55, 1),
                 ),
               ),
-              SizedBox(height: 16),
-              for(final course in courses)
+              const SizedBox(height: 16),
+              for (final course in courses)
                 CourseCard(
                   key: ValueKey(course.code),
                   code: course.code,

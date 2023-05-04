@@ -14,7 +14,7 @@ class CourseListScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Text(
+              const Text(
                 'Course List',
                 style: TextStyle(
                   fontFamily: 'FredokaOne',
@@ -22,7 +22,7 @@ class CourseListScreen extends StatelessWidget {
                   color: Color.fromRGBO(251, 142, 55, 1),
                 ),
               ),
-              SizedBox(height: 16),
+             const  SizedBox(height: 16),
               for(final course in courses)
                 CourseCard(
                   key: ValueKey(course.code),
