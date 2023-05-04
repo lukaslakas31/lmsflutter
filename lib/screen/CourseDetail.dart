@@ -15,7 +15,7 @@ class CourseDetail extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: const [
               Text(
-                'Course tite',
+                'Course Details',
                 style: TextStyle(
                   fontFamily: 'FredokaOne',
                   fontSize: 42,
