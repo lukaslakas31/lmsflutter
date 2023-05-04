@@ -5,7 +5,8 @@ import 'package:lmsflutter/model/student_model.dart';
 import 'package:go_router/go_router.dart';
 
 class MyCourseScreen extends StatefulWidget {
-  MyCourseScreen({Key? key, required this.courses, required this.user}) : super(key: key);
+  MyCourseScreen({Key? key, required this.courses, required this.user})
+      : super(key: key);
 
   final List<Course> courses;
   final Student user;
@@ -19,38 +20,38 @@ class _MyCourseScreenState extends State<MyCourseScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              const Text(
-                'My Course',
-                style: TextStyle(
-                  fontFamily: 'FredokaOne',
-                  fontSize: 42,
-                  color: Color.fromRGBO(251, 142, 55, 1),
+        body: SafeArea(
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                const Text(
+                  'My Course',
+                  style: TextStyle(
+                    fontFamily: 'FredokaOne',
+                    fontSize: 42,
+                    color: Color.fromRGBO(251, 142, 55, 1),
+                  ),
                 ),
-              ),
-              const SizedBox(height: 16),
-              for (final code in widget.user.courseCodes)
-                for(final course in widget.courses)
-                  if(course.code == code)
-                    CourseCard(
-                      key: ValueKey(course.code),
-                      // code: course.code,
-                      // name: course.name,
-                      // description: course.description,
-                      // imageUrl: course.source,
-                      course: course,
-                      buttonText: 'View Course',
-                      addCode: null,
-                    )
-            ],
+                const SizedBox(height: 16),
+                for (final code in widget.user.courseCodes)
+                  for (final course in widget.courses)
+                    if (course.code == code)
+                      CourseCard(
+                        key: ValueKey(course.code),
+                        // code: course.code,
+                        // name: course.name,
+                        // description: course.description,
+                        // imageUrl: course.source,
+                        course: course,
+                        buttonText: 'View Course',
+                        addCode: null,
+                      )
+              ],
+            ),
           ),
         ),
-      ),
-      bottomNavigationBar: ClipRRect(
+        bottomNavigationBar: ClipRRect(
           borderRadius: const BorderRadius.only(
               topRight: Radius.circular(10), topLeft: Radius.circular(10)),
           child: BottomNavigationBar(
@@ -71,7 +72,7 @@ class _MyCourseScreenState extends State<MyCourseScreen> {
             ],
             currentIndex: _selectedIndex,
             onTap: (int index) {
-              switch(index){
+              switch (index) {
                 case 0:
                   context.go('/dashboard');
                   break;
@@ -79,7 +80,7 @@ class _MyCourseScreenState extends State<MyCourseScreen> {
                   context.go('/course');
                   break;
                 default:
-                 const Text('Screen not found.');
+                  const Text('Screen not found.');
               }
               setState(() {
                 _selectedIndex = index;
@@ -88,7 +89,6 @@ class _MyCourseScreenState extends State<MyCourseScreen> {
             unselectedItemColor: Colors.white,
             selectedItemColor: Color.fromRGBO(163, 90, 33, 1),
           ),
-        )
-    );
+        ));
   }
 }

@@ -19,15 +19,19 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final TextEditingController _userNameControllerLogin = TextEditingController();
-  final TextEditingController _passwordControllerLogin = TextEditingController();
-  final TextEditingController _userNameControllerSignup = TextEditingController();
-  final TextEditingController _passwordControllerSignup = TextEditingController();
-  final TextEditingController _confirmPasswordController = TextEditingController();
+  final TextEditingController _userNameControllerLogin =
+      TextEditingController();
+  final TextEditingController _passwordControllerLogin =
+      TextEditingController();
+  final TextEditingController _userNameControllerSignup =
+      TextEditingController();
+  final TextEditingController _passwordControllerSignup =
+      TextEditingController();
+  final TextEditingController _confirmPasswordController =
+      TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-
     // if(widget.isLoggedIn){
     //   context.go('/');
     // }
@@ -56,7 +60,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     controller: _userNameControllerLogin,
                     keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
-                      hintText: 'Email',
+                      hintText: 'Username',
                       filled: true,
                       fillColor: const Color.fromRGBO(253, 247, 204, 1),
                       border: OutlineInputBorder(
@@ -91,23 +95,21 @@ class _LoginScreenState extends State<LoginScreen> {
               SizedBox(
                 width: 100,
                 child: OutlinedButton(
-                  onPressed: () {},
-                  style: OutlinedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
+                    onPressed: () {},
+                    style: OutlinedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      side: const BorderSide(
+                        color: Color.fromRGBO(251, 142, 55, 1),
+                        width: 2,
+                      ),
+                      padding: const EdgeInsets.symmetric(vertical: 10),
                     ),
-                    side: const BorderSide(
-                      color: Color.fromRGBO(251, 142, 55, 1),
-                      width: 2,
-                    ),
-                    padding: const EdgeInsets.symmetric(vertical: 10),
-                  ),
-                  child: TextButton(
+                    child: TextButton(
                       onPressed: () {
-                        widget.logIn(
-                          _userNameControllerLogin.text,
-                          _passwordControllerLogin.text
-                        );
+                        widget.logIn(_userNameControllerLogin.text,
+                            _passwordControllerLogin.text);
                       },
                       child: const Text(
                         'Login',
@@ -117,8 +119,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           fontSize: 18,
                         ),
                       ),
-                  )
-                ),
+                    )),
               ),
               const SizedBox(height: 20),
               TextButton(
@@ -146,7 +147,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     controller: _userNameControllerSignup,
                     keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
-                      hintText: 'Create Email',
+                      hintText: 'Username',
                       filled: true,
                       fillColor: const Color.fromRGBO(253, 247, 204, 1),
                       border: OutlineInputBorder(
@@ -160,7 +161,6 @@ class _LoginScreenState extends State<LoginScreen> {
               const SizedBox(height: 20),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 30),
-
                 child: SizedBox(
                   width: 300,
                   child: TextField(
@@ -218,8 +218,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       widget.signUp(
                           _userNameControllerSignup.text,
                           _passwordControllerSignup.text,
-                          _confirmPasswordController.text
-                      );
+                          _confirmPasswordController.text);
                     },
                     child: const Text(
                       'Sign up',

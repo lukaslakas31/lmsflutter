@@ -75,7 +75,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   Container(
                     alignment: Alignment.centerLeft,
                     child: const Text(
-                      'Welcome,',
+                      'welcome,',
                       style: TextStyle(
                         fontSize: 20,
                         fontFamily: 'Lexend',
@@ -85,10 +85,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   Container(
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      '${widget.user.getUserName}',
+                      widget.user.getUserName,
                       style: const TextStyle(
-                        fontSize: 36,
+                        fontSize: 50,
                         fontFamily: 'Lexend',
+                        color: Colors.white,
                       ),
                     ),
                   ),
@@ -97,36 +98,38 @@ class _DashboardScreenState extends State<DashboardScreen> {
             ),
             const SizedBox(height: 20),
             Container(
+              padding: const EdgeInsets.fromLTRB(30, 40, 20, 20),
               width: screenWidth * 1,
               height: 225,
               decoration: BoxDecoration(
-                color: const Color.fromRGBO(253, 247, 204, 1),
+                gradient: const LinearGradient(
+                  begin: Alignment.topRight,
+                  end: Alignment.bottomLeft,
+                  colors: [
+                    Color.fromARGB(255, 114, 53, 236),
+                    Color.fromARGB(255, 118, 62, 171),
+                  ],
+                ),
                 borderRadius: BorderRadius.circular(20),
               ),
-              child: Column(
-                children: [
-                  Container(
-                    alignment: Alignment.bottomCenter,
-                    width: screenWidth * 1,
-                    height: 50,
-                    decoration: const BoxDecoration(
-                      color: Color.fromRGBO(251, 142, 55, 1),
-                      borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(20),
-                          topRight: Radius.circular(20),
-                          bottomLeft: Radius.zero,
-                          bottomRight: Radius.zero),
+              child: RichText(
+                text: const TextSpan(
+                    text: 'Learn\nEverything\nat ',
+                    style: TextStyle(
+                      fontSize: 40,
+                      color: Colors.white,
+                      fontFamily: 'FredokaOne',
                     ),
-                    child: const Text(
-                      'Calendar',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 36,
-                        fontFamily: 'Lexend',
-                      ),
-                    ),
-                  ),
-                ],
+                    children: <TextSpan>[
+                      TextSpan(
+                        text: 'App_',
+                        style: TextStyle(
+                          fontSize: 40,
+                          color: Colors.orange,
+                          fontFamily: 'FredokaOne',
+                        ),
+                      )
+                    ]),
               ),
             ),
             const SizedBox(height: 20),
@@ -134,37 +137,53 @@ class _DashboardScreenState extends State<DashboardScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
-                    height: 115,
-                    width: 160,
-                    decoration: BoxDecoration(
-                      color: const Color.fromRGBO(253, 247, 204, 1),
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          '${widget.user.getCourseCodes.length}',
-                          style: const TextStyle(
-                            fontSize: 64,
-                            fontFamily: 'Lexend',
-                          ),
-                        ),
-                        const Text(
-                          'Courses',
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontFamily: 'Lexend',
-                          ),
-                        ),
-                      ],
-                    )),
-                Container(
+                  padding: const EdgeInsets.fromLTRB(0, 15, 0, 15),
                   height: 115,
-                  width: 160,
+                  width: 155,
                   decoration: BoxDecoration(
                     color: const Color.fromRGBO(253, 247, 204, 1),
                     borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        '${widget.user.getCourseCodes.length}',
+                        style: const TextStyle(
+                          fontSize: 64,
+                          fontFamily: 'Lexend',
+                        ),
+                      ),
+                      const Text(
+                        'Courses',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontFamily: 'Lexend',
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  padding: const EdgeInsets.fromLTRB(0, 27, 0, 15),
+                  height: 115,
+                  width: 155,
+                  decoration: BoxDecoration(
+                    color: const Color.fromRGBO(253, 247, 204, 1),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: const [
+                      Icon(Icons.rocket_launch, color: Colors.blue, size: 45),
+                      Text(
+                        'Beginner',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontFamily: 'Lexend',
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ],
@@ -172,10 +191,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
             const SizedBox(height: 20),
             ElevatedButton(
               child: Text(
-                'Join Course +',
+                'Add Course +',
                 style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 20,
+                  color: Colors.white,
+                  fontSize: 25,
                   fontFamily: 'Lexend',
                 ),
               ),
@@ -213,7 +232,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
             ],
             currentIndex: _selectedIndex,
             onTap: (int index) {
-              switch(index){
+              switch (index) {
                 case 0:
                   context.go('/dashboard');
                   break;
@@ -221,17 +240,15 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   context.go('/course');
                   break;
                 default:
-                 const Text('Screen not found.');
+                  const Text('Screen not found.');
               }
               setState(() {
                 _selectedIndex = index;
               });
             },
-          
             unselectedItemColor: Colors.white,
             selectedItemColor: Color.fromRGBO(163, 90, 33, 1),
           ),
-        )
-      );
+        ));
   }
 }
