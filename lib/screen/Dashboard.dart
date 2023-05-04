@@ -228,9 +228,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
               });
             },
           
-            unselectedItemColor: Colors.black,
-            selectedItemColor: Colors.white,
+            unselectedItemColor: Colors.white,
+            selectedItemColor: Color.fromRGBO(163, 90, 33, 1),
           ),
-        ));
+        )
+      );
   }
 }
