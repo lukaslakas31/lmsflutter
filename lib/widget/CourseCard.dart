@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class CourseCard extends StatelessWidget {
   final String code;
   final String name;
   final String description;
   final String imageUrl;
+  final String buttonText;
   final Key key;
+  
 
   const CourseCard({
     required this.code,
@@ -13,6 +16,7 @@ class CourseCard extends StatelessWidget {
     required this.description,
     required this.imageUrl,
     required this.key,
+    required this.buttonText,
   }) : super(key: key);
 
   @override
@@ -52,7 +56,9 @@ class CourseCard extends StatelessWidget {
           ),
           TextButton(
             onPressed: () {
-              Null;
+              if(buttonText == 'Enroll Course'){
+                context.go('/dashboard'); //FOR TESTING
+              }
             },
             style: TextButton.styleFrom(
               backgroundColor: const Color.fromRGBO(251, 142, 55, 1),
@@ -65,8 +71,8 @@ class CourseCard extends StatelessWidget {
                 ),
               ),
             ),
-            child: const Text(
-              'Enroll Course',
+            child: Text(
+              buttonText,
               style: TextStyle(
                 fontFamily: 'Lexend',
                 color: Colors.white,

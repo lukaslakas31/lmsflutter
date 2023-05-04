@@ -1,22 +1,39 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-
+import 'package:lmsflutter/widget/CourseCard.dart';
+import 'package:lmsflutter/model/course_model.dart';
 
 class CourseScreen extends StatelessWidget {
-  /// Constructs a [CourseScreen]
-  const CourseScreen({super.key});
+  CourseScreen({Key? key, required this.courses}) : super(key: key);
 
+  final List<Course> courses;
   @override
   Widget build(BuildContext context) {
-    //start code here
     return Scaffold(
-      appBar: AppBar(title: const Text('Course')),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text('course page')
-          ],
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Text(
+                'My Course',
+                style: TextStyle(
+                  fontFamily: 'FredokaOne',
+                  fontSize: 42,
+                  color: Color.fromRGBO(251, 142, 55, 1),
+                ),
+              ),
+              SizedBox(height: 16),
+              for(final course in courses)
+                CourseCard(
+                  key: ValueKey(course.code),
+                  code: course.code,
+                  name: course.name,
+                  description: course.description,
+                  imageUrl: course.source,
+                  buttonText: 'View Course',
+                )
+            ],
+          ),
         ),
       ),
     );

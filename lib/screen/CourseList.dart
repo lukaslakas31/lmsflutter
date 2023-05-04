@@ -30,6 +30,7 @@ class CourseListScreen extends StatelessWidget {
                   name: course.name,
                   description: course.description,
                   imageUrl: course.source,
+                  buttonText: 'Enroll Course',
                 )
             ],
           ),

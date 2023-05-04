@@ -149,7 +149,7 @@ class _MyAppState extends State<MyApp> {
                 GoRoute(
                   path: 'course',
                   builder: (BuildContext context, GoRouterState state) {
-                    return const CourseScreen();
+                    return CourseScreen(courses: _courses);
                   },
                 ),
                 GoRoute(
