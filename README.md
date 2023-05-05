@@ -1,16 +1,37 @@
-# lmsflutter
+# App_ (Learning Management System)
 
-A new Flutter project.
+App_ is a Simple Learning Management System that built using Flutter.
 
-## Getting Started
+## Developer
 
-This project is a starting point for a Flutter application.
+Marvin Ray Dalida - Frontend/Backend Developer
 
-A few resources to get you started if this is your first Flutter project:
+Luke Juniel Galicia - Frontend/Designer Developer
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Lance Kian Lejano - Frontend/Designer Developer
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Austin Charles Burog - Frontend/Designer Developer
+
+## Features
+
+- Authentication
+
+- Signup/Login
+
+- CourseList
+
+- MyCourse
+
+- CourseDetails
+
+##Screenshots
+
+![LoginScreen](https://user-images.githubusercontent.com/91405272/236379954-7623f1d1-4cdb-4150-9c77-8354e03d5437.png)
+![Authentications(SignUp)](https://user-images.githubusercontent.com/91405272/236379968-ad885351-df0a-48f7-8999-c808f74d6d97.png)
+![Authentications(Login)](https://user-images.githubusercontent.com/91405272/236379970-2869e59a-c988-40fb-9e6a-bf6d1b52bc2e.png)
+![DashBoard](https://user-images.githubusercontent.com/91405272/236379980-792321a4-407b-4188-9fd4-0f34f05057e9.png)
+![CourseList](https://user-images.githubusercontent.com/91405272/236379994-b1187daa-23e6-4463-a507-91ce00d375c3.png)
+![MyCourse](https://user-images.githubusercontent.com/91405272/236380027-1f014973-aaeb-401b-88cb-2a6f444ca42c.png)
+![CourseDetails (1)](https://user-images.githubusercontent.com/91405272/236380036-afae40b8-8658-4661-9751-cee3f22bab56.png)
+![CourseDetails (2)](https://user-images.githubusercontent.com/91405272/236380053-864b09f3-954e-4b29-9cc1-8c148b1a3ef9.png)
+
