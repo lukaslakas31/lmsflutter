@@ -10,10 +10,12 @@ class LoginScreen extends StatefulWidget {
     super.key,
     required this.signUp,
     required this.logIn,
+    required this.wrongCredentials,
   });
 
   final SignUpCallback signUp;
   final LogInCallback logIn;
+  final bool wrongCredentials;
   @override
   State<LoginScreen> createState() => _LoginScreenState();
 }
@@ -29,6 +31,7 @@ class _LoginScreenState extends State<LoginScreen> {
       TextEditingController();
   final TextEditingController _confirmPasswordController =
       TextEditingController();
+  var test = 1; //FOR TESTING LAMANG
 
   @override
   Widget build(BuildContext context) {
@@ -108,8 +111,23 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     child: TextButton(
                       onPressed: () {
+                        if(widget.wrongCredentials){
+                          showDialog<String>(
+                            context: context,
+                            builder: (BuildContext context) => AlertDialog(
+                              title: const Text('Log in'),
+                              content: const Text('Invalid Credentials'),
+                              actions: <Widget>[
+                                TextButton(
+                                  onPressed: () => Navigator.pop(context, 'Close'),
+                                  child: const Text('Close'),
+                                ),
+                              ],
+                            ),
+                          );
+                        }
                         widget.logIn(_userNameControllerLogin.text,
-                            _passwordControllerLogin.text);
+                          _passwordControllerLogin.text);
                       },
                       child: const Text(
                         'Login',

@@ -25,12 +25,14 @@ class _MyCourseScreenState extends State<MyCourseScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                const Text(
-                  'My Course',
-                  style: TextStyle(
-                    fontFamily: 'FredokaOne',
-                    fontSize: 42,
-                    color: Color.fromRGBO(251, 142, 55, 1),
+                const Center(
+                  child: Text(
+                    'My Course',
+                    style: TextStyle(
+                      fontFamily: 'FredokaOne',
+                      fontSize: 42,
+                      color: Color.fromRGBO(251, 142, 55, 1),
+                    ),
                   ),
                 ),
                 const SizedBox(height: 16),
