@@ -21,16 +21,19 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   bool _isLoggedIn = false;
-  bool _isWrongCredentials = false;
   Student? _user;
   List<Student> studentList = [];
   List<Course> _courses = [
-    Course('SSNI777', 'Hekasi', 'Heograpiya, Kasaysayan at Sibika.',
-        'https://cf.shopee.ph/file/4959bda3eb63003cb0dc84642c0799e4'),
-    Course('SSNI778', 'Katekesis', 'Mga aral ng diyos.',
-        'https://cf.shopee.ph/file/5f2d90a41d8f6e4e16ef2e7c576bce8e'),
-    Course('SSNI779', 'E.S.P.', 'Edukasyon sa pagpapakatao',
-        'https://th.bing.com/th/id/OIP.3m_Vl4PYAdU9MD2_C51kIgHaKJ?pid=ImgDet&w=584&h=800&rs=1'),
+    Course('CC321', 'Data Structures & Algorithms', 'Study the fundamentals of Programming',
+        'https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80'),
+    Course('CC123', 'Psychology', 'Explore the human psyche',
+        'https://userscontent2.emaze.com/images/9eca4f57-8a9f-44d1-b0cc-deff2788c37b/5305f090-db15-4330-993e-6d09855dfb35.png'),
+    Course('CC41', 'History', 'Explore the past',
+        'https://i.pinimg.com/originals/bb/82/2d/bb822dc439cbe22cb4337fc84a4fee7b.jpg'),
+    Course('CC541', 'Music', 'It is not rocket science',
+        'https://th.bing.com/th/id/R.81cbf1bb8e96b7df8d53595e419899d1?rik=6dqoFLumlL8LUw&riu=http%3a%2f%2fwallpapercave.com%2fwp%2fpVTEkzk.jpg&ehk=r1uv7fY6YEyjCeT3B8tuqLmhkCP3Csox1Oar0qtlIZo%3d&risl=&pid=ImgRaw&r=0'),
+    Course('CC641', 'Biology', 'Study life\'s greatest gifts',
+        'https://northelectives.weebly.com/uploads/1/3/5/7/135704380/published/hero-biology.jpg?1611862181'),
   ];
 
   void _logOut() {
@@ -40,7 +43,7 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
-  void _logIn(username, password) {
+  bool _logIn(username, password) {
     bool isMatched = false;
     Student? matchedUser;
     if (studentList.length != 0) {
@@ -58,18 +61,20 @@ class _MyAppState extends State<MyApp> {
           _user = matchedUser;
           _isLoggedIn = true;
         });
+        return true;
       }else{
-        print('test');
-        setState(() {
-          _isWrongCredentials = true;
-        });
+        return false;
       }
     }
+    return false;
   }
 
-  void _signUp(username, password, cpassword) {
+  int _signUp(username, password, cpassword) {
     bool isMatched = false;
-    print(username);
+    if(username == '' || password == '' || cpassword == '') {
+      return -3;
+    }
+
     if (studentList.length == 0) {
       if (password == cpassword) {
         studentList.add(Student(username, password));
@@ -79,25 +84,36 @@ class _MyAppState extends State<MyApp> {
           _user = studentList[studentList.length - 1];
           _isLoggedIn = true;
         });
+        return 1;
+      }
+      else {
+        return -2;
       }
     } else {
       for (int i = 0; i < studentList.length; i++) {
         if (username == studentList[i].getUserName) {
           isMatched = true;
           print('user existed');
-          break;
+          return -1;
         }
       }
       if (!isMatched) {
-        studentList.add(Student(username, password));
-        print('user created');
-        print(studentList);
-        setState(() {
-          _user = studentList[studentList.length - 1];
-          _isLoggedIn = true;
-        });
+        if(password == cpassword){
+          studentList.add(Student(username, password));
+          print('user created');
+          print(studentList);
+          setState(() {
+            _user = studentList[studentList.length - 1];
+            _isLoggedIn = true;
+          });
+          return 1;
+        }
+        else {
+          return -2;
+        }
       }
     }
+    return -1;
   }
 
   @override
@@ -119,8 +135,6 @@ class _MyAppState extends State<MyApp> {
                   return LoginScreen(
                     signUp: _signUp,
                     logIn: _logIn,
-                    wrongCredentials: _isWrongCredentials,
-
                   );
                 }
               },
@@ -138,7 +152,6 @@ class _MyAppState extends State<MyApp> {
                       return LoginScreen(
                         signUp: _signUp,
                         logIn: _logIn,
-                        wrongCredentials: _isWrongCredentials,
                       );
                     }
                   },
@@ -156,7 +169,6 @@ class _MyAppState extends State<MyApp> {
                       return LoginScreen(
                         signUp: _signUp,
                         logIn: _logIn,
-                        wrongCredentials: _isWrongCredentials,
                       );
                     }
                   },

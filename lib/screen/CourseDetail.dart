@@ -109,6 +109,87 @@ class _CourseDetailState extends State<CourseDetail> {
                       contentHorizontalPadding: 20,
                       contentBorderWidth: 1,
                     ),
+                    AccordionSection(
+                      isOpen: false,
+                      leftIcon: const Icon(Icons.movie, color: Colors.white),
+                      headerBackgroundColor:
+                      const Color.fromRGBO(251, 142, 55, 1),
+                      headerBackgroundColorOpened:
+                      const Color.fromRGBO(251, 142, 55, 1),
+                      headerPadding: const EdgeInsets.symmetric(
+                        horizontal: 20,
+                        vertical: 20,
+                      ),
+                      header: const Text(
+                        'Lesson #2',
+                        style: TextStyle(
+                          fontFamily: 'FredokaOne',
+                          fontSize: 25,
+                          color: Colors.white,
+                        ),
+                      ),
+                      content: const Icon(
+                        Icons.play_arrow,
+                        size: 200,
+                        color: Color(0xff999999),
+                      ),
+                      contentHorizontalPadding: 20,
+                      contentBorderWidth: 1,
+                    ),
+                    AccordionSection(
+                      isOpen: false,
+                      leftIcon: const Icon(Icons.movie, color: Colors.white),
+                      headerBackgroundColor:
+                      const Color.fromRGBO(251, 142, 55, 1),
+                      headerBackgroundColorOpened:
+                      const Color.fromRGBO(251, 142, 55, 1),
+                      headerPadding: const EdgeInsets.symmetric(
+                        horizontal: 20,
+                        vertical: 20,
+                      ),
+                      header: const Text(
+                        'Lesson #3',
+                        style: TextStyle(
+                          fontFamily: 'FredokaOne',
+                          fontSize: 25,
+                          color: Colors.white,
+                        ),
+                      ),
+                      content: const Icon(
+                        Icons.play_arrow,
+                        size: 200,
+                        color: Color(0xff999999),
+                      ),
+                      contentHorizontalPadding: 20,
+                      contentBorderWidth: 1,
+                    ),
+                    AccordionSection(
+                      isOpen: false,
+                      leftIcon: const Icon(Icons.quiz, color: Colors.white),
+                      headerBackgroundColor:
+                      const Color.fromRGBO(251, 142, 55, 1),
+                      headerBackgroundColorOpened:
+                      const Color.fromRGBO(251, 142, 55, 1),
+                      headerPadding: const EdgeInsets.symmetric(
+                        horizontal: 20,
+                        vertical: 20,
+                      ),
+                      header: const Text(
+                        'Quiz #1',
+                        style: TextStyle(
+                          fontFamily: 'FredokaOne',
+                          fontSize: 25,
+                          color: Colors.white,
+                        ),
+                      ),
+                      content: const Icon(
+                        Icons.edit_note,
+                        size: 200,
+                        color: Color(0xff999999),
+                      ),
+                      contentHorizontalPadding: 20,
+                      contentBorderWidth: 1,
+                    ),
                   ],
                 ),
               ],
