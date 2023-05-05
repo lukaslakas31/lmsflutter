@@ -138,7 +138,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
               children: [
                 Container(
                   padding: const EdgeInsets.fromLTRB(0, 15, 0, 15),
-                  height: 115,
+                  height: 130,
                   width: 155,
                   decoration: BoxDecoration(
                     color: const Color.fromRGBO(253, 247, 204, 1),
@@ -166,7 +166,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 ),
                 Container(
                   padding: const EdgeInsets.fromLTRB(0, 27, 0, 15),
-                  height: 115,
+                  height: 130,
                   width: 155,
                   decoration: BoxDecoration(
                     color: const Color.fromRGBO(253, 247, 204, 1),
@@ -175,7 +175,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: const [
-                      Icon(Icons.rocket_launch, color: Colors.blue, size: 45),
+                      Icon(Icons.rocket_launch, color: Colors.blue, size: 60),
                       Text(
                         'Beginner',
                         style: TextStyle(

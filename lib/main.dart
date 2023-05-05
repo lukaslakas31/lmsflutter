@@ -21,6 +21,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   bool _isLoggedIn = false;
+  bool _isWrongCredentials = false;
   Student? _user;
   List<Student> studentList = [];
   List<Course> _courses = [
@@ -56,6 +57,11 @@ class _MyAppState extends State<MyApp> {
         setState(() {
           _user = matchedUser;
           _isLoggedIn = true;
+        });
+      }else{
+        print('test');
+        setState(() {
+          _isWrongCredentials = true;
         });
       }
     }
@@ -113,6 +119,8 @@ class _MyAppState extends State<MyApp> {
                   return LoginScreen(
                     signUp: _signUp,
                     logIn: _logIn,
+                    wrongCredentials: _isWrongCredentials,
+
                   );
                 }
               },
@@ -130,6 +138,7 @@ class _MyAppState extends State<MyApp> {
                       return LoginScreen(
                         signUp: _signUp,
                         logIn: _logIn,
+                        wrongCredentials: _isWrongCredentials,
                       );
                     }
                   },
@@ -147,6 +156,7 @@ class _MyAppState extends State<MyApp> {
                       return LoginScreen(
                         signUp: _signUp,
                         logIn: _logIn,
+                        wrongCredentials: _isWrongCredentials,
                       );
                     }
                   },
