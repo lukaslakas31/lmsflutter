@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-typedef SignUpCallback = void Function(String, String, String);
-typedef LogInCallback = void Function(String, String);
+typedef SignUpCallback = int Function(String, String, String);
+typedef LogInCallback = bool Function(String, String);
 
 class LoginScreen extends StatefulWidget {
   /// Constructs a [LoginScreen]
@@ -10,12 +10,10 @@ class LoginScreen extends StatefulWidget {
     super.key,
     required this.signUp,
     required this.logIn,
-    required this.wrongCredentials,
   });
 
   final SignUpCallback signUp;
   final LogInCallback logIn;
-  final bool wrongCredentials;
   @override
   State<LoginScreen> createState() => _LoginScreenState();
 }
@@ -111,7 +109,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     child: TextButton(
                       onPressed: () {
-                        if(widget.wrongCredentials){
+                        var result = widget.logIn(_userNameControllerLogin.text,
+                            _passwordControllerLogin.text);
+                        if(!result){
                           showDialog<String>(
                             context: context,
                             builder: (BuildContext context) => AlertDialog(
@@ -119,15 +119,15 @@ class _LoginScreenState extends State<LoginScreen> {
                               content: const Text('Invalid Credentials'),
                               actions: <Widget>[
                                 TextButton(
-                                  onPressed: () => Navigator.pop(context, 'Close'),
+                                  onPressed: () {
+                                    Navigator.pop(context, 'Close');
+                                  },
                                   child: const Text('Close'),
                                 ),
                               ],
                             ),
                           );
                         }
-                        widget.logIn(_userNameControllerLogin.text,
-                          _passwordControllerLogin.text);
                       },
                       child: const Text(
                         'Login',
@@ -233,10 +233,38 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   child: TextButton(
                     onPressed: () {
-                      widget.signUp(
+                      var content;
+                      var result = widget.signUp(
                           _userNameControllerSignup.text,
                           _passwordControllerSignup.text,
                           _confirmPasswordController.text);
+                      if(result == -1){
+                        content = const Text('Username already exists.');
+                      }
+                      else if(result == -2) {
+                        content = const Text('Password did not match.');
+                      }
+                      else if(result == -3){
+                        content = const Text('Fill the required fields.');
+                      }
+
+                      if(result < 0){
+                        showDialog<String>(
+                          context: context,
+                          builder: (BuildContext context) => AlertDialog(
+                            title: const Text('Sign up'),
+                            content: content,
+                            actions: <Widget>[
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.pop(context, 'Close');
+                                },
+                                child: const Text('Close'),
+                              ),
+                            ],
+                          ),
+                        );
+                      }
                     },
                     child: const Text(
                       'Sign up',
