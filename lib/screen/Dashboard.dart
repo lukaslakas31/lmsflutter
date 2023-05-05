@@ -1,13 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lmsflutter/model/student_model.dart';
+import 'package:lmsflutter/model/course_model.dart';
+import 'package:lmsflutter/widget/RecommendCard.dart';
 
 class DashboardScreen extends StatefulWidget {
   /// Constructs a [DashboardScreen]
-  const DashboardScreen({super.key, required this.user, required this.logOut});
+  const DashboardScreen({
+    super.key,
+    required this.user,
+    required this.logOut,
+    required this.courses
+  });
 
   final Student user;
   final VoidCallback logOut;
+  final List<Course> courses;
   @override
   State<DashboardScreen> createState() => _DashboardScreenState();
 }
@@ -25,79 +33,74 @@ class _DashboardScreenState extends State<DashboardScreen> {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.transparent,
+          automaticallyImplyLeading: false,
           elevation: 0,
-          centerTitle: true,
+          centerTitle: false,
           title: const Text(
             'app_',
+            textAlign: TextAlign.start,
             style: TextStyle(
               color: Color.fromRGBO(251, 142, 55, 1),
-              fontSize: 42,
+              fontSize: 32,
               fontFamily: 'FredokaOne',
             ),
           ),
           actions: [
-            //LOGOUT BUTTON
             Padding(
-              padding: const EdgeInsets.fromLTRB(0, 10, 20, 0),
-              child: ElevatedButton(
-                onPressed: () {
-                  widget.logOut();
-                },
-                child: Icon(
-                  Icons.logout,
-                  color: Colors.black,
-                  size: 24,
-                ),
-                style: ElevatedButton.styleFrom(
-                  minimumSize: const Size(24, 24),
-                  backgroundColor: const Color.fromRGBO(251, 142, 55, 1),
-                  shape: const CircleBorder(),
-                  padding: const EdgeInsets.all(8),
-                ),
-              ),
-            )
-          ],
-        ),
-        body: Container(
-          padding: const EdgeInsets.fromLTRB(20, 30, 20, 30),
-          child: Column(children: [
-            Container(
-              padding: const EdgeInsets.fromLTRB(30, 10, 30, 10),
-              width: screenWidth * 1,
-              height: 120,
-              decoration: BoxDecoration(
-                color: const Color.fromRGBO(251, 142, 55, 1),
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    alignment: Alignment.centerLeft,
-                    child: const Text(
-                      'welcome,',
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontFamily: 'Lexend',
-                      ),
-                    ),
-                  ),
-                  Container(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
+              padding: EdgeInsets.fromLTRB(0, 10, 21, 0),
+              child: Container(
+                child: Row(
+                  children: [
+                    Text(
                       widget.user.getUserName,
                       style: const TextStyle(
-                        fontSize: 50,
+                        color: Colors.black,
+                        fontSize: 16,
                         fontFamily: 'Lexend',
-                        color: Colors.white,
                       ),
                     ),
-                  ),
-                ],
+                    SizedBox(width: 10,),
+                    GestureDetector(
+                      child: CircleAvatar(
+                        backgroundImage: NetworkImage('https://static6.businessinsider.com/image/56a8f50ddd089553198b4731-1200/ditch-the-smirk-when-it-comes-to-profile-pictures-only-2-of-the-top-ranked-profiles-on-okcupid-featured-people-hiding-their-smiles-instead-try-smiling-with-your-teeth.jpg'),
+                      ),
+                      onTap: (){
+                        widget.logOut();
+                      },
+                    )
+                  ],
+                ),
               ),
             ),
-            const SizedBox(height: 20),
+          ],
+          // actions: [
+          //   //LOGOUT BUTTON
+          //   Padding(
+          //     padding: const EdgeInsets.fromLTRB(0, 10, 20, 0),
+          //     child: ElevatedButton(
+          //       onPressed: () {
+          //         widget.logOut();
+          //       },
+          //       child: Icon(
+          //         Icons.logout,
+          //         color: Colors.black,
+          //         size: 24,
+          //       ),
+          //       style: ElevatedButton.styleFrom(
+          //         minimumSize: const Size(24, 24),
+          //         backgroundColor: const Color.fromRGBO(251, 142, 55, 1),
+          //         shape: const CircleBorder(),
+          //         padding: const EdgeInsets.all(8),
+          //       ),
+          //     ),
+          //   )
+          // ],
+        ),
+        body: SingleChildScrollView(
+          //padding: const EdgeInsets.fromLTRB(20, 30, 20, 30),
+          child: Column(children: [
             Container(
+              margin: const EdgeInsets.fromLTRB(20, 30, 20, 0),
               padding: const EdgeInsets.fromLTRB(30, 40, 20, 20),
               width: screenWidth * 1,
               height: 225,
@@ -106,7 +109,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   begin: Alignment.topRight,
                   end: Alignment.bottomLeft,
                   colors: [
-                    Color.fromARGB(255, 114, 53, 236),
+                    Color.fromARGB(255, 79, 53, 236),
                     Color.fromARGB(255, 118, 62, 171),
                   ],
                 ),
@@ -137,11 +140,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
+                  margin: const EdgeInsets.fromLTRB(20, 0, 0, 0),
                   padding: const EdgeInsets.fromLTRB(0, 15, 0, 15),
                   height: 130,
-                  width: 155,
+                  width: 165,
                   decoration: BoxDecoration(
-                    color: const Color.fromRGBO(253, 247, 204, 1),
+                    color: const Color.fromRGBO(124, 244, 216, 1),
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: Column(
@@ -159,28 +163,38 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         style: TextStyle(
                           fontSize: 16,
                           fontFamily: 'Lexend',
+                          color: Color.fromRGBO(46, 46, 46, 1)
                         ),
                       ),
                     ],
                   ),
                 ),
                 Container(
+                  margin: const EdgeInsets.fromLTRB(0, 0, 20, 0),
                   padding: const EdgeInsets.fromLTRB(0, 27, 0, 15),
                   height: 130,
-                  width: 155,
+                  width: 165,
                   decoration: BoxDecoration(
-                    color: const Color.fromRGBO(253, 247, 204, 1),
+                    color: const Color.fromRGBO(124, 192, 255, 1),
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: const [
-                      Icon(Icons.rocket_launch, color: Colors.blue, size: 60),
+                      // Icon(Icons.rocket_launch, color: Colors.blue, size: 60),
+                      Text(
+                          '🚀',
+                        style: TextStyle(
+                          fontSize: 54,
+                          fontFamily: 'Lexend',
+                        ),
+                      ),
                       Text(
                         'Beginner',
                         style: TextStyle(
                           fontSize: 16,
                           fontFamily: 'Lexend',
+                          color: Color.fromRGBO(46, 46, 46, 1)
                         ),
                       ),
                     ],
@@ -189,33 +203,56 @@ class _DashboardScreenState extends State<DashboardScreen> {
               ],
             ),
             const SizedBox(height: 20),
-            ElevatedButton(
-              child: Text(
-                'Add Course +',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 25,
-                  fontFamily: 'Lexend',
+            Container(
+              padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+              child: ElevatedButton(
+                child: Text(
+                  'Explore courses 🔎',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 25,
+                    fontFamily: 'Lexend',
+                  ),
                 ),
-              ),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color.fromRGBO(251, 142, 55, 1),
-                minimumSize: Size(screenWidth * 1, 60),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20.0),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color.fromRGBO(251, 142, 55, 1),
+                  minimumSize: Size(screenWidth * 1, 60),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20.0),
+                  ),
                 ),
+                onPressed: () {
+                  context.go('/course_list');
+                },
               ),
-              onPressed: () {
-                context.go('/course_list');
-              },
             ),
+            const SizedBox(height: 20),
+            Text(
+              'Recommend for you',
+              style: TextStyle(
+                fontFamily: 'Lexend',
+                fontSize: 20,
+
+              ),
+            ),
+            const SizedBox(height: 20),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  SizedBox(width: 20,),
+                  for(final course in widget.courses)
+                    RecommendCard(name: course.name, source: course.source,),
+                ],
+              ),
+            )
           ]),
         ),
         bottomNavigationBar: ClipRRect(
           borderRadius: const BorderRadius.only(
               topRight: Radius.circular(10), topLeft: Radius.circular(10)),
           child: BottomNavigationBar(
-            backgroundColor: const Color.fromRGBO(251, 142, 55, 1),
+            backgroundColor: Colors.white,
             items: const <BottomNavigationBarItem>[
               BottomNavigationBarItem(
                 icon: Icon(
@@ -246,8 +283,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 _selectedIndex = index;
               });
             },
-            unselectedItemColor: Colors.white,
-            selectedItemColor: Color.fromRGBO(163, 90, 33, 1),
+            unselectedItemColor: const Color.fromRGBO(251, 142, 55, 1),
+            selectedItemColor: Color.fromRGBO(150, 85, 33, 1),
           ),
         ));
   }
