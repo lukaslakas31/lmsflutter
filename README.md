@@ -36,7 +36,8 @@ Austin Charles Burog - Frontend/Designer Developer
 ![Authentications(Login)](https://user-images.githubusercontent.com/91405272/236379970-2869e59a-c988-40fb-9e6a-bf6d1b52bc2e.png)
 
  ### Dashboard Screen
-![DashBoard](https://user-images.githubusercontent.com/91405272/236381648-24ef93a9-53d4-44a2-839d-1fed3d8ebe20.png)
+![photo_2023-05-05_16-27-32](https://user-images.githubusercontent.com/51297171/236411387-a7972333-9e99-4cb6-b5b6-8b23565ac8e5.jpg)
+![photo_2023-05-05_16-27-34](https://user-images.githubusercontent.com/51297171/236411449-c300f689-3b02-4b21-971c-d8b653fe727a.jpg)
 
 
 ### CourseList Screen

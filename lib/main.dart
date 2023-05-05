@@ -129,6 +129,7 @@ class _MyAppState extends State<MyApp> {
                   return DashboardScreen(
                     user: _user!,
                     logOut: _logOut,
+                    courses: _courses,
                   );
                 } else {
                   context.go('/login');
@@ -146,6 +147,7 @@ class _MyAppState extends State<MyApp> {
                       return DashboardScreen(
                         user: _user!,
                         logOut: _logOut,
+                        courses: _courses,
                       );
                     } else {
                       context.go('/login');
@@ -164,6 +166,7 @@ class _MyAppState extends State<MyApp> {
                       return DashboardScreen(
                         user: _user!,
                         logOut: _logOut,
+                        courses: _courses,
                       );
                     } else {
                       return LoginScreen(
