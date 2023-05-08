@@ -266,6 +266,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 ),
                 label: 'My Course',
               ),
+              BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.person,
+                ),
+                label: 'My Account',
+              ),
             ],
             currentIndex: _selectedIndex,
             onTap: (int index) {
@@ -275,6 +281,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   break;
                 case 1:
                   context.go('/course');
+                  break;
+                case 2:
+                  context.go('/user');
                   break;
                 default:
                   const Text('Screen not found.');

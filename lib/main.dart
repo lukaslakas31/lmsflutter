@@ -5,8 +5,10 @@ import 'package:lmsflutter/screen/CourseDetail.dart';
 import 'package:lmsflutter/screen/CourseList.dart';
 import 'package:lmsflutter/screen/Dashboard.dart';
 import 'package:lmsflutter/screen/Login.dart';
+import 'package:lmsflutter/screen/User.dart';
 import 'package:lmsflutter/model/student_model.dart';
 import 'package:lmsflutter/model/course_model.dart';
+
 
 void main() => runApp(const MyApp());
 
@@ -217,6 +219,12 @@ class _MyAppState extends State<MyApp> {
                   path: 'course_detail/:code',
                   builder: (BuildContext context, GoRouterState state) {
                     return CourseDetail(courses: _courses, code: state.pathParameters['code']!,);
+                  },
+                ),
+                GoRoute(
+                  path: 'user',
+                  builder: (BuildContext context, GoRouterState state) {
+                    return UserScreen();
                   },
                 ),
               ],

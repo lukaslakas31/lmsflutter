@@ -57,7 +57,7 @@ class _MyCourseScreenState extends State<MyCourseScreen> {
           borderRadius: const BorderRadius.only(
               topRight: Radius.circular(10), topLeft: Radius.circular(10)),
           child: BottomNavigationBar(
-            backgroundColor: const Color.fromRGBO(251, 142, 55, 1),
+            backgroundColor: Colors.white,
             items: const <BottomNavigationBarItem>[
               BottomNavigationBarItem(
                 icon: Icon(
@@ -71,6 +71,12 @@ class _MyCourseScreenState extends State<MyCourseScreen> {
                 ),
                 label: 'My Course',
               ),
+              BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.person,
+                ),
+                label: 'My Account',
+              ),
             ],
             currentIndex: _selectedIndex,
             onTap: (int index) {
@@ -81,6 +87,9 @@ class _MyCourseScreenState extends State<MyCourseScreen> {
                 case 1:
                   context.go('/course');
                   break;
+                case 2:
+                  context.go('/user');
+                  break;
                 default:
                   const Text('Screen not found.');
               }
@@ -88,9 +97,9 @@ class _MyCourseScreenState extends State<MyCourseScreen> {
                 _selectedIndex = index;
               });
             },
-            unselectedItemColor: Colors.white,
-            selectedItemColor: const Color.fromRGBO(163, 90, 33, 1),
+            unselectedItemColor: const Color.fromRGBO(251, 142, 55, 1),
+            selectedItemColor: Color.fromRGBO(150, 85, 33, 1),
           ),
-        ),);
+        ));
   }
 }
