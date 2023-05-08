@@ -4,6 +4,8 @@ import 'package:lmsflutter/widget/Subjects.dart';
 import 'package:lmsflutter/model/course_model.dart';
 import 'package:go_router/go_router.dart';
 import 'package:accordion/accordion.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+import 'package:lmsflutter/widget/Review.dart';
 
 class CourseDetail extends StatefulWidget {
   const CourseDetail({super.key, required this.courses, required this.code});
@@ -17,6 +19,7 @@ class CourseDetail extends StatefulWidget {
 
 class _CourseDetailState extends State<CourseDetail> {
   int _selectedIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,15 +28,6 @@ class _CourseDetailState extends State<CourseDetail> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                const Text(
-                  'Course Details',
-                  style: TextStyle(
-                    fontFamily: 'FredokaOne',
-                    fontSize: 42,
-                    color: Color.fromRGBO(251, 142, 55, 1),
-                  ),
-                ),
-                const SizedBox(height: 16),
                 for (final course in widget.courses)
                   if (course.code == widget.code)
                     Subjects(
@@ -42,10 +36,11 @@ class _CourseDetailState extends State<CourseDetail> {
                       name: course.name,
                       description: course.description,
                       imageUrl: course.source,
+                      url: course.youtubeUrl,
                     ),
                 Accordion(
                   disableScrolling: true,
-                  maxOpenSections: 2,
+                  maxOpenSections: 1,
                   headerBackgroundColorOpened: Colors.black54,
                   scaleWhenAnimating: true,
                   openAndCloseAnimation: true,
@@ -53,7 +48,7 @@ class _CourseDetailState extends State<CourseDetail> {
                       const EdgeInsets.symmetric(vertical: 7, horizontal: 15),
                   children: [
                     AccordionSection(
-                      isOpen: false,
+                      isOpen: true,
                       leftIcon: const Icon(Icons.insights_rounded,
                           color: Colors.white),
                       headerBackgroundColor:
@@ -83,35 +78,40 @@ class _CourseDetailState extends State<CourseDetail> {
                       contentBorderWidth: 1,
                     ),
                     AccordionSection(
-                      isOpen: false,
-                      leftIcon: const Icon(Icons.movie, color: Colors.white),
+                      isOpen: true,
+                      leftIcon: const Icon(Icons.edit_note,
+                          color: Colors.white),
                       headerBackgroundColor:
-                          const Color.fromRGBO(251, 142, 55, 1),
+                      const Color.fromRGBO(251, 142, 55, 1),
                       headerBackgroundColorOpened:
-                          const Color.fromRGBO(251, 142, 55, 1),
+                      const Color.fromRGBO(251, 142, 55, 1),
                       headerPadding: const EdgeInsets.symmetric(
                         horizontal: 20,
                         vertical: 20,
                       ),
                       header: const Text(
-                        'Lesson #1',
+                        'Course content',
                         style: TextStyle(
                           fontFamily: 'FredokaOne',
                           fontSize: 25,
                           color: Colors.white,
                         ),
                       ),
-                      content: const Icon(
-                        Icons.play_arrow,
-                        size: 200,
-                        color: Color(0xff999999),
+                      content: const Text(
+                        '''Lorem ipsum is typically a corrupted version of 'De finibus bonorum et malorum', a 1st century BC text by the Roman statesman and philosopher Cicero, with words altered, added, and removed to make it nonsensical and improper Latin.''',
+                        style: TextStyle(
+                          fontFamily: 'Lexend',
+                          fontSize: 20,
+                        ),
                       ),
-                      contentHorizontalPadding: 20,
+                      // contentHorizontalPadding: 20,
                       contentBorderWidth: 1,
                     ),
                     AccordionSection(
-                      isOpen: false,
-                      leftIcon: const Icon(Icons.movie, color: Colors.white),
+                      isOpen: true,
+                      contentVerticalPadding: 20,
+                      leftIcon: const Icon(Icons.person,
+                      color: Colors.white),
                       headerBackgroundColor:
                       const Color.fromRGBO(251, 142, 55, 1),
                       headerBackgroundColorOpened:
@@ -121,77 +121,53 @@ class _CourseDetailState extends State<CourseDetail> {
                         vertical: 20,
                       ),
                       header: const Text(
-                        'Lesson #2',
+                        'Author',
                         style: TextStyle(
                           fontFamily: 'FredokaOne',
                           fontSize: 25,
                           color: Colors.white,
                         ),
                       ),
-                      content: const Icon(
-                        Icons.play_arrow,
-                        size: 200,
-                        color: Color(0xff999999),
+                      content: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          CircleAvatar(
+                            radius: 80,
+                            backgroundImage: NetworkImage('https://static6.businessinsider.com/image/56a8f50ddd089553198b4731-1200/ditch-the-smirk-when-it-comes-to-profile-pictures-only-2-of-the-top-ranked-profiles-on-okcupid-featured-people-hiding-their-smiles-instead-try-smiling-with-your-teeth.jpg'),
+                          ),
+                          Text(
+                            'Bro Instructor',
+                            style: TextStyle(
+                              fontFamily: 'Lexend',
+                              fontSize: 20,
+                              color: Colors.black,
+                            ),
+                          ),
+                        ],
                       ),
-                      contentHorizontalPadding: 20,
+                      // contentHorizontalPadding: 20,
                       contentBorderWidth: 1,
-                    ),
-                    AccordionSection(
-                      isOpen: false,
-                      leftIcon: const Icon(Icons.movie, color: Colors.white),
-                      headerBackgroundColor:
-                      const Color.fromRGBO(251, 142, 55, 1),
-                      headerBackgroundColorOpened:
-                      const Color.fromRGBO(251, 142, 55, 1),
-                      headerPadding: const EdgeInsets.symmetric(
-                        horizontal: 20,
-                        vertical: 20,
-                      ),
-                      header: const Text(
-                        'Lesson #3',
-                        style: TextStyle(
-                          fontFamily: 'FredokaOne',
-                          fontSize: 25,
-                          color: Colors.white,
-                        ),
-                      ),
-                      content: const Icon(
-                        Icons.play_arrow,
-                        size: 200,
-                        color: Color(0xff999999),
-                      ),
-                      contentHorizontalPadding: 20,
-                      contentBorderWidth: 1,
-                    ),
-                    AccordionSection(
-                      isOpen: false,
-                      leftIcon: const Icon(Icons.quiz, color: Colors.white),
-                      headerBackgroundColor:
-                      const Color.fromRGBO(251, 142, 55, 1),
-                      headerBackgroundColorOpened:
-                      const Color.fromRGBO(251, 142, 55, 1),
-                      headerPadding: const EdgeInsets.symmetric(
-                        horizontal: 20,
-                        vertical: 20,
-                      ),
-                      header: const Text(
-                        'Quiz #1',
-                        style: TextStyle(
-                          fontFamily: 'FredokaOne',
-                          fontSize: 25,
-                          color: Colors.white,
-                        ),
-                      ),
-                      content: const Icon(
-                        Icons.edit_note,
-                        size: 200,
-                        color: Color(0xff999999),
-                      ),
-                      contentHorizontalPadding: 20,
-                      contentBorderWidth: 1,
-                    ),
+                    )
                   ],
                 ),
+                Text(
+                  'Featured reviews',
+                  textAlign: TextAlign.left,
+                  style: TextStyle(
+                    fontFamily: 'Lexend',
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
+                ),
+                SizedBox(height: 20,),
+                Column(
+                  children: [
+                    Review(),
+                    Review(),
+                    Review()
+                  ],
+                )
               ],
             ),
           ),
