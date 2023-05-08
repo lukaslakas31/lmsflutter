@@ -24,7 +24,9 @@ Austin Charles Burog - Frontend/Designer Developer
 
 - CourseDetails
 
-- Accordion
+## New Feature added.
+
+- Youtube Player
 
 ## Screenshots
 ### Login Screen
@@ -49,10 +51,11 @@ Austin Charles Burog - Frontend/Designer Developer
 
 
 ### CourseDetails Screen
-![CourseDetails (1)](https://user-images.githubusercontent.com/91405272/236380036-afae40b8-8658-4661-9751-cee3f22bab56.png)
-![CourseDetails (2)](https://user-images.githubusercontent.com/91405272/236380053-864b09f3-954e-4b29-9cc1-8c148b1a3ef9.png)
+![CourseDetails (1)](https://user-images.githubusercontent.com/91405272/236745772-37874460-e34c-4150-9abf-a227e81ba199.png)
+![CourseDetails (2)](https://user-images.githubusercontent.com/91405272/236745793-250e8405-002c-4d34-bb5c-e26d3d5c8392.png)
+![CourseDetails (3)](https://user-images.githubusercontent.com/91405272/236745802-19f33640-11e8-4b98-b079-cac69aeb4bac.png)
 
-### Accordion Screen
-![Accordion](https://user-images.githubusercontent.com/91405272/236381944-7479b02b-a82e-4040-8144-f57607bb1dc2.png)
-![Accordion(1)](https://user-images.githubusercontent.com/91405272/236381951-94a81c7d-d945-4b5c-97a3-d6de42312206.png)
 
+### YoutubePlayer Screen
+![YoutubePlayer](https://user-images.githubusercontent.com/91405272/236745821-01340fbc-2ff5-4484-af59-558fb3f9dae6.png)
+![YoutubePlayer(1)](https://user-images.githubusercontent.com/91405272/236745837-26ad2148-650e-4b43-8c0a-b2f9664535c7.png)
